@@ -1,5 +1,7 @@
 package com.statista.pages;
 
-public class HomePage {
+import com.statista.utilities.TestBase;
 
+public class HomePage extends TestBase {
+    
 }
