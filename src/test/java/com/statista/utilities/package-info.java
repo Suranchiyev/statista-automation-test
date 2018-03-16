@@ -5,4 +5,4 @@
  * @author Beknazar
  *
  */
-package utilities;
+package com.statista.utilities;
