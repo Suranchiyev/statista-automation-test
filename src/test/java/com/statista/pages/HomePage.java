@@ -23,5 +23,13 @@ public class HomePage extends TestBase {
 	@FindBy(id = "homepageSearch")
 	public WebElement searchBox;
 	
+	@FindBy(css = "input[value='Statista Search']")
+	public WebElement searchButton;
 	
+	public boolean isAt() {
+		if (driver.getTitle().equals("• Statista - The Statistics Portal for Market Data, Market Research and Market Studies")) {
+			return true;
+		}
+		return false;
+	}
 }

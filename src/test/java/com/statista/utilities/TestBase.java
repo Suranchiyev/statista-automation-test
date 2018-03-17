@@ -22,7 +22,7 @@ public class TestBase {
 	
 	@AfterClass
 	public void ternDown() {
-		Driver.closeDriver();
+		//Driver.closeDriver();
 	}
 	
 }
