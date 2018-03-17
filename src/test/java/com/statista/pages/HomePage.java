@@ -27,7 +27,7 @@ public class HomePage extends TestBase {
 	public WebElement searchButton;
 	
 	public boolean isAt() {
-		if (driver.getTitle().equals("• Statista - The Statistics Portal for Market Data, Market Research and Market Studies")) {
+		if (driver.getTitle().contains(" Statista - The Statistics Portal for Market Data, Market Research and Market Studies")) {
 			return true;
 		}
 		return false;

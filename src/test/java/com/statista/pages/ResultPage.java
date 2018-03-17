@@ -84,7 +84,7 @@ public class ResultPage {
 	}
 
 	public boolean isAt() {
-		if (driver.getTitle().equals("• Search | Statista")) {
+		if (driver.getTitle().contains(" Search | Statista")) {
 			return true;
 		}
 		return false;
