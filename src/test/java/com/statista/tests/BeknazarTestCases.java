@@ -15,7 +15,7 @@ import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
-public class TestSearchFunctionalities extends TestBase {
+public class BeknazarTestCases extends TestBase {
 	
 
 	@Test
