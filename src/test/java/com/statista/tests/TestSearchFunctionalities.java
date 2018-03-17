@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
@@ -16,7 +19,7 @@ public class TestSearchFunctionalities extends TestBase {
 	
 
 	@Test
-	public void countriesFilter() throws InterruptedException {
+	public void achiveFilter() throws InterruptedException {
 		HomePage homePage = new HomePage();
         // Verify Title
 		assertTrue(homePage.isAt());
@@ -37,12 +40,23 @@ public class TestSearchFunctionalities extends TestBase {
 		
 		// Verify number of result is 34
 		int result = resultPage.getNumber(resultPage.numberOfSearchResult);
-		assertEquals(34,result);
+		assertEquals(result,34);
 		
 		// Verify results match with searching value
-		System.out.println(resultPage.searchResults.size());
-		assertTrue(resultPage.match(resultPage.searchResults, "Red Lobster",
-				"Lobster","restaurant","food","species","price","Darden"));
+		assertTrue(resultPage.match(resultPage.getResults(), "Red Lobster",
+				"Lobster","restaurant","food","species","price","Darden","dining"));
+		
+		//Verify Archive search filter default come as "no archive" 
+		Select archiveList = new Select(resultPage.archive);
+		assertEquals(archiveList.getFirstSelectedOption().getText(),"no archive");
+		archiveList.selectByVisibleText("All (incl. archive)");
+		resultPage.refreshBtn.click();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		boolean check = wait.until(ExpectedConditions.textToBePresentInElement(By.cssSelector("h4[class='hl-module hideMobile']>span"), "(35)"));
+		//Verify Change archive to "All (incl.archive)" should add one more options
+		result = resultPage.getNumber(driver.findElement(By.cssSelector("h4[class='hl-module hideMobile']>span")));
+		assertEquals(result,35);
 
 	}
 }

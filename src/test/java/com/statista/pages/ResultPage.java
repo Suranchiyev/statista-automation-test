@@ -1,5 +1,6 @@
 package com.statista.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -28,30 +29,53 @@ public class ResultPage {
     @FindBy(xpath="//h2")
     public List<WebElement> searchResults;
     
-    /*  I will finish this method tomorrow
-	public List<WebElement> getResults() throws InterruptedException {
-		List<WebElement> results;
-		results = driver.findElements(By.xpath("//h2"));
+    @FindBy(id = "archive")
+    public WebElement archive;
+    
+    @FindBy(id = "refreshBtn")
+    public WebElement refreshBtn;
+    
+    
+    /*
+     *  This method gets Titles of the all search results 
+     *   It converts WebElement to String because WebElement keeps only
+     *   reference to Element, since search result might be store in multiple 
+     *   pages. It looses value once driver change focus. 
+     */
+	public List<String> getResults(){
+		List<String> resultsStr = new ArrayList<>();
+		List<WebElement> resultsFirst;
+		resultsFirst = driver.findElements(By.xpath("//h2"));
+		for(WebElement el : resultsFirst) {
+			resultsStr.add(el.getText());
+		}
 		driver.findElement(By.xpath("//a[.='2']")).click();
-		Thread.sleep(2000);
-		results.addAll(driver.findElements(By.xpath("//h2")));
-		System.out.println("From Result Page: "+results.size());
-		driver.findElement(By.xpath("//a[.='1']")).click();
-		Thread.sleep(2000);
-		return results;
-	}
-	*/
+		List<WebElement> resultsSecond;
+		resultsSecond = driver.findElements(By.xpath("//h2"));
+		for(WebElement el : resultsSecond) {
+			resultsStr.add(el.getText());
+		}
 
-	public boolean match(List<WebElement> results, String... keyWords) {
+		driver.findElement(By.xpath("//a[.='1']")).click();
+
+		return resultsStr;
+	}
+	
+    /*
+     *    This method accept List of String(results)
+     *    And keyWords for checking if result is relevant to the searching
+     *    value
+     */
+	public boolean match(List<String> results, String... keyWords) {
 		boolean check = true;
-		for (WebElement el : results) {
+		for (String str : results) {
 			for (String keyWord : keyWords) {
-				if (el.getText().toLowerCase().contains(keyWord.toLowerCase())) {
+				if (str.toLowerCase().contains(keyWord.toLowerCase())) {
 					check = false;
 				}
 			}
 			if (check) {
-				System.out.println(el.getText());
+				System.out.println(str);
 				return false;
 			}
 			check = true;
@@ -76,6 +100,10 @@ public class ResultPage {
 		}
 
 		return Integer.parseInt(numbers);
+	}
+	
+	public WebElement getNumberOfResult() {
+		return driver.findElement(By.cssSelector("h4[class='hl-module hideMobile']>span"));
 	}
 
 }
