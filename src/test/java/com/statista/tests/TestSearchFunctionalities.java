@@ -1,11 +1,11 @@
 package com.statista.tests;
 
 import org.testng.annotations.Test;
+import com.statista.utilities.TestBase;
 
-import com.statista.utilities.Driver;
 
-
-public class TestSearchFunctionalities extends Driver {
+public class TestSearchFunctionalities extends TestBase {
+	
 	 @Test
      public void countriesFilter() {
     	      System.out.println(driver.getTitle());

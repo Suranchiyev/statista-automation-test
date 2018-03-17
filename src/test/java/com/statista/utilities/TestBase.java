@@ -1,14 +1,14 @@
 package com.statista.utilities;
 
 import java.util.concurrent.TimeUnit;
-
-
-
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import com.statista.utilities.ConfigurationReader;
+import com.statista.utilities.Driver;
 
 public class TestBase {
+	
 	
     protected WebDriver driver; 
     

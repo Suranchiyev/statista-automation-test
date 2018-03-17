@@ -7,9 +7,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Driver {
-	protected static WebDriver driver;
+	private static WebDriver driver;
     
-
+	private Driver() {}
 	
 	public static WebDriver getDriver() {
 		if (driver == null) {
