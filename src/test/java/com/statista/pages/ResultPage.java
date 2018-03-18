@@ -41,6 +41,12 @@ public class ResultPage {
     @FindBy(xpath ="//h3[contains(text(),'Studies & Reports')]")
     public WebElement studiesAndReports;
     
+    @FindBy(xpath="//input[@class='entitiy__checkbox']")
+    public List<WebElement> statisticsCheckBox;
+    
+    @FindBy(xpath="//*[@class='entitiy__label']/span")
+    public List<WebElement> checkBoxOptions;
+    
     
     /*
      *   This method gets Titles of the all search results in the first two
@@ -127,6 +133,31 @@ public class ResultPage {
 			}
 		}
 		return true;
+	}
+	
+	public boolean isSmthngDisplayed (List<WebElement> something, List<WebElement> options, String word) {
+		for (int i=0; i<something.size(); i++) {
+			if(something.isEmpty()){
+				System.out.println("There are no checkboxes displayed on the page");
+				return false;
+			}else {
+				for (int j=0; j<options.size(); j++) {
+					String str=options.get(j).getText();
+					if(str.equals(word)) {
+						System.out.println("The check box option "+word+" is found");
+						return true;
+					}else {
+						System.out.println("The check box option "+word+" is NOT found");
+						return false;
+					}
+					
+				}
+				return true;
+			}
+			
+		}
+		return false;
+		
 	}
 
 }
