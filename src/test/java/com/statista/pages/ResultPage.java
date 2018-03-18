@@ -2,8 +2,6 @@ package com.statista.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,6 +45,9 @@ public class ResultPage {
     @FindBy(xpath="//*[@class='entitiy__label']/span")
     public List<WebElement> checkBoxOptions;
     
+    public void selectCountryInFilter(String country) { 
+    	driver.findElement(By.xpath("//span[.='"+country+"']//preceding-sibling::input")).click();
+    }
     
     /*
      *   This method gets Titles of the all search results in the first two
