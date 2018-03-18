@@ -43,7 +43,8 @@ public class ResultPage {
     
     
     /*
-     *  This method gets Titles of the all search results 
+     *   This method gets Titles of the all search results in the first two
+     *   pages.   
      *   It converts WebElement to String because WebElement keeps only
      *   reference to Element, since search result might be store in multiple 
      *   pages. It looses value once driver change focus. 
@@ -55,14 +56,19 @@ public class ResultPage {
 		for(WebElement el : resultsFirst) {
 			resultsStr.add(el.getText());
 		}
+		try {
 		driver.findElement(By.xpath("//a[.='2']")).click();
 		List<WebElement> resultsSecond;
 		resultsSecond = driver.findElements(By.xpath("//h2"));
 		for(WebElement el : resultsSecond) {
 			resultsStr.add(el.getText());
 		}
+		System.out.println("Results on  two pages");
 
 		driver.findElement(By.xpath("//a[.='1']")).click();
+		}catch(Exception e) {
+			System.out.println("Results in one page");
+		}
 
 		return resultsStr;
 	}

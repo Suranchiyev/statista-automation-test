@@ -75,5 +75,8 @@ public class BeknazarTestCases extends TestBase {
 		
 		// Verify number of result is 3
 		assertTrue(resultPage.checkNumberOfResult("3"));
+		
+		// Verify results match with searching value
+		assertTrue(resultPage.match(resultPage.getResults(),"Darden"));
 	}
 }
