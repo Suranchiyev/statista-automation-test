@@ -2,12 +2,15 @@ package com.statista.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.statista.utilities.Driver;
 
@@ -34,6 +37,9 @@ public class ResultPage {
     
     @FindBy(id = "refreshBtn")
     public WebElement refreshBtn;
+     
+    @FindBy(xpath ="//h3[contains(text(),'Studies & Reports')]")
+    public WebElement studiesAndReports;
     
     
     /*
@@ -102,8 +108,19 @@ public class ResultPage {
 		return Integer.parseInt(numbers);
 	}
 	
-	public WebElement getNumberOfResult() {
-		return driver.findElement(By.cssSelector("h4[class='hl-module hideMobile']>span"));
+	public boolean checkNumberOfResult(String expected) {
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		boolean matched = wait.until(ExpectedConditions.textToBe(By.cssSelector("h4[class='hl-module hideMobile']>span"), "("+expected+")"));
+		return matched;
+	}
+	
+	public boolean optionsAreDispayed(List<WebElement> list) {
+		for(WebElement e : list) {
+			if(!e.isDisplayed()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

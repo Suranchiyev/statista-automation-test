@@ -2,14 +2,7 @@ package com.statista.tests;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
@@ -19,13 +12,10 @@ public class BeknazarTestCases extends TestBase {
 	
 
 	@Test
-	public void achiveFilter() throws InterruptedException {
+	public void verifySearchFunctionWithArchiveFilter(){
 		HomePage homePage = new HomePage();
         // Verify Title
 		assertTrue(homePage.isAt());
-	
-		// Verify logo is displayed
-		assertTrue(homePage.logo.isDisplayed());
 		
 		// Search for Red Lobster
 		homePage.searchBox.sendKeys("Red Lobster");
@@ -35,12 +25,14 @@ public class BeknazarTestCases extends TestBase {
 		// Verify title
 		assertTrue(resultPage.isAt());
 		
+		// Verify options are displayed
+		assertTrue(resultPage.optionsAreDispayed(resultPage.searchResults));
+		
 		// Verify Search accuracy selected "Normal" be default
 		assertTrue(resultPage.searchAccuracyNormallRadio.isSelected());
 		
 		// Verify number of result is 34
-		int result = resultPage.getNumber(resultPage.numberOfSearchResult);
-		assertEquals(result,34);
+		assertTrue(resultPage.checkNumberOfResult("34"));
 		
 		// Verify results match with searching value
 		assertTrue(resultPage.match(resultPage.getResults(), "Red Lobster",
@@ -51,12 +43,37 @@ public class BeknazarTestCases extends TestBase {
 		assertEquals(archiveList.getFirstSelectedOption().getText(),"no archive");
 		archiveList.selectByVisibleText("All (incl. archive)");
 		resultPage.refreshBtn.click();
-		Thread.sleep(2000);
-		WebDriverWait wait = new WebDriverWait(driver,5);
-		boolean check = wait.until(ExpectedConditions.textToBePresentInElement(By.cssSelector("h4[class='hl-module hideMobile']>span"), "(35)"));
-		//Verify Change archive to "All (incl.archive)" should add one more options
-		result = resultPage.getNumber(driver.findElement(By.cssSelector("h4[class='hl-module hideMobile']>span")));
-		assertEquals(result,35);
-
+		
+		//Verify that Change to archive to "All (incl.archive)" added one more result
+		assertTrue(resultPage.checkNumberOfResult("35"));
+	}
+	
+	@Test
+	public void searchFunctionStudiesReport() {
+		HomePage homePage = new HomePage();
+		//Verify Title
+		assertTrue(homePage.isAt());
+		// Search for Red Lobster
+		homePage.searchBox.sendKeys("Red Lobster");
+		homePage.searchButton.click();
+		ResultPage resultPage = new ResultPage();
+		
+		// Verify options are displayed
+		assertTrue(resultPage.optionsAreDispayed(resultPage.searchResults));
+				
+		// Click Studies&Reports
+		resultPage.studiesAndReports.click();
+		
+		// Verify number of result is 2
+		assertTrue(resultPage.checkNumberOfResult("2"));
+		
+		//Verify Archive search filter default come as "no archive" 
+		Select archiveList = new Select(resultPage.archive);
+		assertEquals(archiveList.getFirstSelectedOption().getText(),"no archive");
+		archiveList.selectByVisibleText("All (incl. archive)");
+		resultPage.refreshBtn.click();
+		
+		// Verify number of result is 3
+		assertTrue(resultPage.checkNumberOfResult("3"));
 	}
 }
