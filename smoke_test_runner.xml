@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="statista automated smoke test" verbose="2">
+	<test name="Login and Search functionalities">
+		<classes>
+			<class name="com.statista.tests.SmokeTestScript"></class>
+		</classes>
+	</test>
+</suite>

@@ -42,4 +42,18 @@
      </dependency>
 
   </dependencies>
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.21.0</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>smoke_test_runner.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

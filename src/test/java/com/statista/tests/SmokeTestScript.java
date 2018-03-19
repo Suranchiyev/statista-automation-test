@@ -67,7 +67,7 @@ public class SmokeTestScript extends TestBase {
 		
 		//System should response with relevant information about IT
 		assertTrue(resultPage.match(resultPage.getResults(), "IT","information","technology",
-				"tech","Digital","device","development","indoor","cyber","ict"));
+				"tech","Digital","device","development","indoor","cyber","ict","storage"));
 		
 		
 		
