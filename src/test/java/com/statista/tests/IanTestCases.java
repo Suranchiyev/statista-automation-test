@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 
-public class StatisticsCheckBoxFilter {
+public class IanTestCases {
 	@Test
 	public void achiveFilter() throws InterruptedException {
 		HomePage homePage = new HomePage();
