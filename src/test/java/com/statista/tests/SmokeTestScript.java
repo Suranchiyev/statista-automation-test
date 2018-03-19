@@ -69,7 +69,5 @@ public class SmokeTestScript extends TestBase {
 		assertTrue(resultPage.match(resultPage.getResults(), "IT","information","technology",
 				"tech","Digital","device","development","indoor","cyber","ict","storage"));
 		
-		
-		
 	}
 }
