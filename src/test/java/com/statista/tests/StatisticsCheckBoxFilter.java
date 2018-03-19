@@ -18,10 +18,10 @@ public class StatisticsCheckBoxFilter {
 		// Verify logo is displayed
 		assertTrue(homePage.logo.isDisplayed());
 		
-		// Search for Red Lobster
+		// Search for Statistics
 		homePage.searchBox.sendKeys("Statistics");
 		homePage.searchBox.sendKeys(Keys.ENTER);
-		//homePage.searchButton.click();
+	
 		ResultPage resultPage = new ResultPage();
 		
 		// Verify title

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.statista.utilities.Driver;
@@ -31,7 +32,7 @@ public class ResultPage {
     public List<WebElement> searchResults;
     
     @FindBy(id = "archive")
-    public WebElement archive;
+    public WebElement archiveOptions;
     
     @FindBy(id = "refreshBtn")
     public WebElement refreshBtn;
@@ -45,14 +46,25 @@ public class ResultPage {
     @FindBy(xpath="//*[@class='entitiy__label']/span")
     public List<WebElement> checkBoxOptions;
     
+    public boolean checkOptionIsSelected(WebElement el,String options) {
+    	Select select = new Select(el);
+    	return select.getFirstSelectedOption().getText().equals(options);
+    }
+    
+    public void selectOptionByVisibleText(WebElement el,String options) {
+    	Select select = new Select(el);
+    	select.selectByVisibleText(options);
+    }
+    
+    
     public void selectCountryInFilter(String country) { 
     	driver.findElement(By.xpath("//span[.='"+country+"']//preceding-sibling::input")).click();
     }
     
     /*
      *   This method gets Titles of the all search results in the first two
-     *   pages.   
-     *   It converts WebElement to String because WebElement keeps only
+     *   pages.(its possible to check all pages, but code will execute for a while)   
+     *   Method converts WebElement to String because WebElement keeps only
      *   reference to Element, since search result might be store in multiple 
      *   pages. It looses value once driver change focus. 
      */
@@ -70,7 +82,7 @@ public class ResultPage {
 		for(WebElement el : resultsSecond) {
 			resultsStr.add(el.getText());
 		}
-		System.out.println("Results on  two pages");
+		System.out.println("Results on  two or more pages");
 
 		driver.findElement(By.xpath("//a[.='1']")).click();
 		}catch(Exception e) {
@@ -94,6 +106,7 @@ public class ResultPage {
 				}
 			}
 			if (check) {
+				System.out.println("This artice might be no relevant to search value:");
 				System.out.println(str);
 				return false;
 			}
@@ -108,7 +121,7 @@ public class ResultPage {
 		}
 		return false;
 	}
-
+    
 	public int getNumber(WebElement element) {
 		String str = element.getText();
 		String numbers = "";
@@ -121,13 +134,21 @@ public class ResultPage {
 		return Integer.parseInt(numbers);
 	}
 	
+	
+	/* This method checks how many results system gave. 
+	   After setting some filter and refreshing results.
+	   Result number element does not have enough time for changing its value
+	   driver returns old result -> using explicit wait by waiting until expected number appear -> true
+	   other ways -> false 
+	*/
 	public boolean checkNumberOfResult(String expected) {
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		boolean matched = wait.until(ExpectedConditions.textToBe(By.cssSelector("h4[class='hl-module hideMobile']>span"), "("+expected+")"));
 		return matched;
 	}
 	
-	public boolean optionsAreDispayed(List<WebElement> list) {
+	
+	public boolean elementsAreDispayed(List<WebElement> list) {
 		for(WebElement e : list) {
 			if(!e.isDisplayed()) {
 				return false;
