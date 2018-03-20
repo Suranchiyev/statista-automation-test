@@ -16,6 +16,9 @@ public class MuhabbatTestCases extends TestBase{
 	assertTrue(homePage.isAt());
 	assertTrue(homePage.logo.isDisplayed());
 	assertTrue(homePage.searchBox.isDisplayed());
+	homePage.searchBox.sendKeys("homelessness");
+	assertTrue(homePage.searchButton.isDisplayed());
+	homePage.searchButton.click();
 	
 //		
 }
