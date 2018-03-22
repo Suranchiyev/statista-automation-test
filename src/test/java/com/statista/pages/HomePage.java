@@ -17,13 +17,14 @@ public class HomePage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
+	
 	@FindBy(id = "logoLink")
 	public WebElement logo;
 	
 	@FindBy(id = "homepageSearch")
 	public WebElement searchBox;
 	
-	@FindBy(css = "input[value='Statista Search']")
+	@FindBy(css = "input[value='Statista Search']")//xpath="//input[@value='Statista Search']" -this one works with my code
 	public WebElement searchButton;
 	
 	@FindBy(css = "li[class='navMain__item  float-right']>a")
