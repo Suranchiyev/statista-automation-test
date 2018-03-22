@@ -46,6 +46,9 @@ public class ResultPage {
     @FindBy(xpath="//*[@class='entitiy__label']/span")
     public List<WebElement> checkBoxOptions;
     
+    @FindBy(xpath="//*[@id=\"q\"]")
+    public WebElement searchResultValue;
+    
     public boolean checkOptionIsSelected(WebElement el,String options) {
     	Select select = new Select(el);
     	return select.getFirstSelectedOption().getText().equals(options);
