@@ -27,6 +27,9 @@ public class HomePage extends TestBase {
 	@FindBy(css = "input[value='Statista Search']")//xpath="//input[@value='Statista Search']" -this one works with my code
 	public WebElement searchButton;
 	
+	@FindBy(xpath="//input[@value='Statista Search']")
+	public WebElement searchBttn;
+	
 	@FindBy(css = "li[class='navMain__item  float-right']>a")
 	public WebElement loginLink;
 	

@@ -1,5 +1,7 @@
 package com.statista.pages;
 
+import static org.testng.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -49,6 +51,17 @@ public class ResultPage {
     @FindBy(xpath="//*[@id=\"q\"]")
     public WebElement searchResultValue;
     
+    @FindBy(xpath="//*[contains(text(), 'Studies & Reports')]//i")
+    public WebElement studAndRepIIcon;
+    
+    @FindBy(xpath="//div[@ data-group='studies']//input")
+    public List<WebElement> studAndRepCheckBoxes;
+    
+    @FindBy(xpath="//div[@ data-group='studies']//*[contains(text(), 'Pro')]")
+    public List<WebElement> studAndRepProButtons;
+    
+    
+    
     public boolean checkOptionIsSelected(WebElement el,String options) {
     	Select select = new Select(el);
     	return select.getFirstSelectedOption().getText().equals(options);
@@ -63,6 +76,7 @@ public class ResultPage {
     public void selectCountryInFilter(String country) { 
     	driver.findElement(By.xpath("//span[.='"+country+"']//preceding-sibling::input")).click();
     }
+    
     
     /*
      *   This method gets Titles of the all search results in the first two
@@ -184,5 +198,12 @@ public class ResultPage {
 		return false;
 		
 	}
+	public boolean checkBoxesSelected(List<WebElement> checkBoxes) {
+		for (WebElement checkBox : checkBoxes) {
+			return(checkBox.isSelected());
+		}return false;	
+	}
+	
+	
 
 }
