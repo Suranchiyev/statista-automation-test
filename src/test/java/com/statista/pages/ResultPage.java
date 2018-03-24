@@ -1,12 +1,12 @@
 package com.statista.pages;
 
-import static org.testng.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +23,30 @@ public class ResultPage {
 		this.driver = Driver.getDriver();
 		PageFactory.initElements(driver, this);
 	}
+	
+    @FindBy(xpath="//label[@for='archive']/../i[@class='fa fa-info-circle tooltip padding-left-5']")
+    public WebElement archiveIcon;
+    
+    @FindBy(className="animation--duration-05")
+    public WebElement hoverTool;
+    
+    @FindBy(xpath="//h3[@class='entitiy__headline margin-bottom-0']/i")
+    public WebElement locationFocusIcon;
+    
+    @FindBy(xpath="//div[@class='showTooltip hoverTooltip animated animation--duration-05 fadeInRight arrowLeft']")
+    public WebElement showTool;
+    
+    @FindBy(xpath="//select[@id='isRegionPref']/option[@value='826']")
+    public WebElement UnitedKingdom;
+    
+    @FindBy(xpath="//select[@id='interval']/option[@value='2015']")
+    public WebElement yearSelect;
+    
+    @FindBy(xpath="//h4[@class='h3 font-size-s-110 bold showMobile']//span[@class='text-normal']")
+    public WebElement searchResult;
+    
+    @FindBy(xpath="//h2")
+    public WebElement UnitedKingdomResult;
 
 	@FindBy(id = "accuracy_1")
 	public WebElement searchAccuracyNormallRadio;
@@ -80,6 +104,19 @@ public class ResultPage {
    public List<WebElement> checkboxText;
    
    public WebElement noteInformation;
+   
+   public boolean checkArchiveIconIsWorking(String result) {
+   	Actions action=new Actions(driver);
+   	action.moveToElement(archiveIcon).perform();
+    return hoverTool.getText().equals(result);
+   	
+   }
+   public boolean checkLocationFocusIconIsWorking(String result) {
+   	Actions action=new Actions(driver);
+   	action.moveToElement(locationFocusIcon).perform();
+    return showTool.getText().contains(result);
+   	
+   }
     
    
     
