@@ -48,19 +48,34 @@ public class ResultPage {
     @FindBy(xpath="//*[@class='entitiy__label']/span")
     public List<WebElement> checkBoxOptions;
     
-    @FindBy(xpath="//*[@id=\"q\"]")
+    @FindBy(xpath="//*[@id='q']")
     public WebElement searchResultValue;
     
     @FindBy(xpath="//*[contains(text(), 'Studies & Reports')]//i")
     public WebElement studAndRepIIcon;
     
-    @FindBy(xpath="//div[@ data-group='studies']//input")
+    @FindBy(xpath="//div[@data-group='studies']//input")
     public List<WebElement> studAndRepCheckBoxes;
     
-    @FindBy(xpath="//div[@ data-group='studies']//*[contains(text(), 'Pro')]")
+    @FindBy(xpath="//div[@data-group='studies']//*[contains(text(), 'Pro')]")
     public List<WebElement> studAndRepProButtons;
     
+    //following 4 WebElements could have been used as List, but later some of them needed to be used as single element 
+   @FindBy(xpath="//*[@data-group='studies']//*[contains(text(), 'Dossiers')]")
+    public WebElement Dossiers;
+   
+   @FindBy(xpath="//*[@data-group='studies']//*[contains(text(), 'Statista studies')]")
+   public WebElement statistaStudies;
+
+   @FindBy(xpath="//*[@data-group='studies']//*[contains(text(), 'Industry & country reports')]")
+   public WebElement industryCountryReports;
+   
+   @FindBy(xpath="//*[@data-group='studies']//*[contains(text(), 'Additional studies')]")
+   public WebElement additionalStudies;
+   
+   public WebElement noteInformation;
     
+   
     
     public boolean checkOptionIsSelected(WebElement el,String options) {
     	Select select = new Select(el);
