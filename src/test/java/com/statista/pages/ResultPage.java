@@ -73,6 +73,12 @@ public class ResultPage {
    @FindBy(xpath="//*[@data-group='studies']//*[contains(text(), 'Additional studies')]")
    public WebElement additionalStudies;
    
+   @FindBy(xpath="//span[@class='search-statistic sprite vertical-middle margin-left-5']")
+   public WebElement statisticsIcon;
+   
+   @FindBy(xpath="//span[@class=' entitiy__label']")
+   public List<WebElement> checkboxText;
+   
    public WebElement noteInformation;
     
    
@@ -189,35 +195,47 @@ public class ResultPage {
 		return true;
 	}
 	
-	public boolean isSmthngDisplayed (List<WebElement> something, List<WebElement> options, String word) {
-		for (int i=0; i<something.size(); i++) {
-			if(something.isEmpty()){
-				System.out.println("There are no checkboxes displayed on the page");
-				return false;
-			}else {
-				for (int j=0; j<options.size(); j++) {
-					String str=options.get(j).getText();
-					if(str.equals(word)) {
-						System.out.println("The check box option "+word+" is found");
-						return true;
-					}else {
-						System.out.println("The check box option "+word+" is NOT found");
-						return false;
-					}
-					
-				}
-				return true;
-			}
-			
-		}
-		return false;
-		
-	}
+//	public boolean isSmthngDisplayed (List<WebElement> something, List<WebElement> options, String word) {
+//		for (int i=0; i<something.size(); i++) {
+//			if(something.isEmpty()){
+//				System.out.println("There are no checkboxes displayed on the page");
+//				return false;
+//			}else {
+//				for (int j=0; j<options.size(); j++) {
+//					String str=options.get(j).getText();
+//					if(str.equals(word)) {
+//						System.out.println("The check box option "+word+" is found");
+//						return true;
+//					}else {
+//						System.out.println("The check box option "+word+" is NOT found");
+//						return false;
+//					}
+//					
+//				}
+//				return true;
+//			}
+//			
+//		}
+//		return false;
+//		
+//	}
 	public boolean checkBoxesSelected(List<WebElement> checkBoxes) {
 		for (WebElement checkBox : checkBoxes) {
 			return(checkBox.isSelected());
 		}return false;	
 	}
+	
+	public boolean checkBoxTextDisplayed(List<WebElement> checkBoxText, String text) {
+		for (WebElement check : checkBoxText) {
+			if(check.getText().contains(text)) {
+				check.click();
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
 	
 	
 
