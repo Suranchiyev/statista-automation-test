@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.statista.utilities.Driver;
 import com.statista.utilities.TestBase;
 
-public class HomePage extends TestBase {
+public class HomePage extends TestBase{
     
 	private WebDriver driver;
 	
@@ -27,7 +27,7 @@ public class HomePage extends TestBase {
 	@FindBy(id = "homepageSearch")
 	public WebElement searchBox;
 	
-	@FindBy(css = "input[value='Statista Search']")//xpath="//input[@value='Statista Search']" -this one works with my code
+	@FindBy(css = "input[value='Statista Search']")
 	public WebElement searchButton;
 	
 	@FindBy(xpath="//input[@value='Statista Search']")

@@ -7,10 +7,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import com.statista.navigation.Header;
 import com.statista.utilities.ConfigurationReader;
 import com.statista.utilities.Driver;
 
-public class TestBase {
+public class TestBase extends Header {
 	
 	
     protected WebDriver driver; 

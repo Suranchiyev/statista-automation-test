@@ -38,32 +38,24 @@ public class SmokeTestScript extends TestBase {
 		HomePage homePage = new HomePage();
 		LoginPage loginPage = new LoginPage();
 		ResultPage resultPage = new ResultPage();
-		// Verify title of HopePage
+
 		assertTrue(homePage.isAt());
 		
-		// Verify "Login" link is displayed
 		assertTrue(homePage.loginLink.isDisplayed());
 		homePage.loginLink.click();
 		
-		//Verify title of LoginPage
 		assertTrue(loginPage.isAt());
 		
-		// Login with valid credentials
 		loginPage.login(ConfigurationReader.getProperty("username"),ConfigurationReader.getProperty("password"));
 		
-		// Verify "My Account" link is displayed after success logging in 
 		assertTrue(loginPage.myAccountMenu.isDisplayed());
 		
-		// Verify title of HomePage
 		assertTrue(homePage.isAt());
 		
-		//verify searchBox is displayed
 		assertTrue(homePage.searchBox.isDisplayed());
 		
-		//Search for "information technology"
 		homePage.searchBox.sendKeys("information technology"+Keys.ENTER);
 		
-		//verify title in resultPage
 		assertTrue(resultPage.isAt());
 		
 		//System should response with relevant information about IT

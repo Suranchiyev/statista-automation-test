@@ -3,6 +3,7 @@
  *
  */
 package com.statista.pages;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -52,7 +53,7 @@ public class ResultPage {
 
 	@FindBy(id = "accuracy_1")
 	public WebElement searchAccuracyNormallRadio;
-	
+
 	@FindBy(id = "accuracy_0")
 	public WebElement searchAccuracyWideRadio;
 
@@ -70,18 +71,18 @@ public class ResultPage {
 
 	@FindBy(xpath = "//h3[contains(text(),'Studies & Reports')]")
 	public WebElement studiesAndReports;
-	
-	@FindBy(xpath="//input[@id='companies']")
-    public WebElement companiesCheckbox;
-    
-    @FindBy(xpath="//label[@data-area='companies']")
-    public WebElement companiesButton;
-    
-    @FindBy(xpath="//span[@class='search-company sprite vertical-middle margin-left-5']")
-    public WebElement companiesIcon;
-    
-    @FindBy(xpath="//div[@class='padding-bottom-10']//input[@type='checkbox']")
-    public List<WebElement> allCheckBoxes;
+
+	@FindBy(xpath = "//input[@id='companies']")
+	public WebElement companiesCheckbox;
+
+	@FindBy(xpath = "//label[@data-area='companies']")
+	public WebElement companiesButton;
+
+	@FindBy(xpath = "//span[@class='search-company sprite vertical-middle margin-left-5']")
+	public WebElement companiesIcon;
+
+	@FindBy(xpath = "//div[@class='padding-bottom-10']//input[@type='checkbox']")
+	public List<WebElement> allCheckBoxes;
 
 	@FindBy(xpath = "//input[@class='entitiy__checkbox']")
 	public List<WebElement> statisticsCheckBox;
@@ -100,10 +101,10 @@ public class ResultPage {
 
 	@FindBy(xpath = "//div[@data-group='studies']//*[contains(text(), 'Pro')]")
 	public List<WebElement> studAndRepProButtons;
-	
+
 	@FindBy(xpath = "//div[@data-group='statistics']//input[@type='checkbox']")
 	public List<WebElement> checkBoxes;
-	//label[@data-area='companies']
+
 	// following 4 WebElements could have been used as List, but later some of them
 	// needed to be used as single element
 	@FindBy(xpath = "//label[@data-area='dossiers']")
@@ -120,43 +121,43 @@ public class ResultPage {
 
 	@FindBy(xpath = "//label[@data-area='cmo']")
 	public WebElement consumerMarkets;
-	
-	@FindBy(xpath="//input[@id='cmo']")
+
+	@FindBy(xpath = "//input[@id='cmo']")
 	public WebElement conMarketCheckBox;
-	
-	@FindBy(xpath="//span[@class='search-cmo sprite vertical-middle margin-left-5']")
+
+	@FindBy(xpath = "//span[@class='search-cmo sprite vertical-middle margin-left-5']")
 	public WebElement conMarketIcon;
-	
-	@FindBy(xpath="//input[@id='dmo']")
+
+	@FindBy(xpath = "//input[@id='dmo']")
 	public WebElement ditgitalMarketCheckBox;
-	
+
 	@FindBy(xpath = "//span[@class='search-statistic sprite vertical-middle margin-left-5']")
 	public WebElement statisticsIcon;
 
 	@FindBy(xpath = "//span[@class=' entitiy__label']")
 	public List<WebElement> checkboxText;
-	
-	@FindBy(xpath="//input[@name='isocountry[]']//following-sibling::span")
+
+	@FindBy(xpath = "//input[@name='isocountry[]']//following-sibling::span")
 	public List<WebElement> allCounties;
 
 	public WebElement statistics;
 
 	public WebElement noteInformation;
-	
+
 	public boolean isNoResults() {
 		try {
 			return searchResults.isEmpty();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return true;
 		}
 	}
-    
+
 	public void chooseRegionByText(String region) {
 		WebElement el = driver.findElement(By.id("isoregion"));
 		Select select = new Select(el);
 		select.selectByVisibleText(region);
 	}
-	
+
 	public void chooseLocationFocusByText(String location) {
 		WebElement el = driver.findElement(By.id("isRegionPref"));
 		Select select = new Select(el);
@@ -286,31 +287,6 @@ public class ResultPage {
 		return true;
 	}
 
-	// public boolean isSmthngDisplayed (List<WebElement> something,
-	// List<WebElement> options, String word) {
-	// for (int i=0; i<something.size(); i++) {
-	// if(something.isEmpty()){
-	// System.out.println("There are no checkboxes displayed on the page");
-	// return false;
-	// }else {
-	// for (int j=0; j<options.size(); j++) {
-	// String str=options.get(j).getText();
-	// if(str.equals(word)) {
-	// System.out.println("The check box option "+word+" is found");
-	// return true;
-	// }else {
-	// System.out.println("The check box option "+word+" is NOT found");
-	// return false;
-	// }
-	//
-	// }
-	// return true;
-	// }
-	//
-	// }
-	// return false;
-	//
-	// }
 	public boolean checkBoxesSelected(List<WebElement> checkBoxes) {
 		for (WebElement checkBox : checkBoxes) {
 			return (checkBox.isSelected());
@@ -330,28 +306,30 @@ public class ResultPage {
 	}
 
 	public WebElement getCountry(String country) {
-		return driver.findElement(By.xpath("//div[@id='isocountry']//span[.='"+country+"']"));
+		return driver.findElement(By.xpath("//div[@id='isocountry']//span[.='" + country + "']"));
 	}
-	
+
 	public boolean isIconDisplayed(String filterText) {
-		WebElement icon=driver.findElement(By.xpath("//span[@class='search-"+filterText.toLowerCase()+" sprite vertical-middle margin-left-5']"));
+		WebElement icon = driver.findElement(By.xpath(
+				"//span[@class='search-" + filterText.toLowerCase() + " sprite vertical-middle margin-left-5']"));
 		return icon.isDisplayed();
-		
+
 	}
+
 	public boolean checkOnlyOneChechBoxIsSelected(String idName) {
-		   boolean bb = true;
-		   for(WebElement el : allCheckBoxes) {
-			   if(el.getAttribute("id").equals(idName)) {
-				   if(el.isSelected()) {
-					   continue;
-				   }
-			   }
-			   if(el.isSelected()) {
-				   bb = false;
-			   }
-			   
-		   }
-		   return bb;
-	   }
+		boolean bb = true;
+		for (WebElement el : allCheckBoxes) {
+			if (el.getAttribute("id").equals(idName)) {
+				if (el.isSelected()) {
+					continue;
+				}
+			}
+			if (el.isSelected()) {
+				bb = false;
+			}
+
+		}
+		return bb;
+	}
 
 }
