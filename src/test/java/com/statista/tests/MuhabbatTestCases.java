@@ -1,6 +1,8 @@
+/**
+ * @author Muhabbat
+ *
+ */
 package com.statista.tests;
-
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -12,26 +14,28 @@ import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
 public class MuhabbatTestCases extends TestBase {
-	HomePage homePage = new HomePage();
-	ResultPage resultPage = new ResultPage();
+	HomePage homePage;
+	ResultPage resultPage;
 	public String searchText = "homelessness";
 	
 	@Test
 	public void verifySearchFunctionality() {
-
+		homePage = new HomePage();
+		resultPage = new ResultPage();
 		assertTrue(homePage.isAt());
 		assertTrue(homePage.logo.isDisplayed());
 		assertTrue(homePage.searchBox.isDisplayed());
 		assertTrue(homePage.searchBttn.isDisplayed());
 		homePage.searchBox.sendKeys(searchText + Keys.ENTER);
 		assertTrue(resultPage.isAt());
-		//assertEquals(searchText, resultPage.searchResultValue.getText());
+		assertEquals(searchText, resultPage.searchResultValue.getAttribute("value"));
 		
 	}
 
 	@Test
 	public void verifySearchFunctionalitiesStadiesAndReports() {
-
+		homePage = new HomePage();
+		resultPage = new ResultPage();
 		assertTrue(homePage.isAt());
 		assertTrue(homePage.logo.isDisplayed());
 		assertTrue(homePage.searchBox.isDisplayed());
@@ -55,7 +59,8 @@ public class MuhabbatTestCases extends TestBase {
 	
 	@Test
 	public void verifyDossiersInStadiesAndReports() {
-
+		homePage = new HomePage();
+		resultPage = new ResultPage();
 		assertTrue(homePage.isAt());
 		assertTrue(homePage.logo.isDisplayed());
 		assertTrue(homePage.searchBox.isDisplayed());
@@ -83,7 +88,8 @@ public class MuhabbatTestCases extends TestBase {
 	
 	@Test
 	public void verifyAdditionalStudiesInStadiesAndReports() {
-
+		homePage = new HomePage();
+		resultPage = new ResultPage();
 		assertTrue(homePage.isAt());
 		assertTrue(homePage.logo.isDisplayed());
 		assertTrue(homePage.searchBox.isDisplayed());
