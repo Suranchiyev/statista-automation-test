@@ -306,5 +306,11 @@ public class ResultPage {
 	public WebElement getCountry(String country) {
 		return driver.findElement(By.xpath("//div[@id='isocountry']//span[.='"+country+"']"));
 	}
+	
+	public boolean isIconDisplayed(String filterText) {
+		WebElement icon=driver.findElement(By.xpath("//span[@class='search-"+filterText.toLowerCase()+" sprite vertical-middle margin-left-5']"));
+		return icon.isDisplayed();
+		
+	}
 
 }

@@ -34,7 +34,8 @@ public class IanTestCases extends TestBase {
 		//verify checkboxes are selected
 		assertTrue(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox)); 
 		//verify icon is displayed
-		assertTrue(resultPage.statisticsIcon.isDisplayed());
+		assertTrue(resultPage.isIconDisplayed("Statistic"));
+		//assertTrue(resultPage.statisticsIcon.isDisplayed());
 		//verify text next to icon and click on it
 		assertTrue(resultPage.checkBoxTextDisplayed(resultPage.checkboxText, "Statistics"));
 		//select Statistics
@@ -65,11 +66,41 @@ public class IanTestCases extends TestBase {
 		//verify checkboxes are selected
 		assertTrue(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox)); 
 		//verify icon is displayed
-		assertTrue(resultPage.statisticsIcon.isDisplayed());
+		assertTrue(resultPage.isIconDisplayed("Forecast"));
+		//assertTrue(resultPage.statisticsIcon.isDisplayed());
 		//verify text next to icon and click on it
 		assertTrue(resultPage.checkBoxTextDisplayed(resultPage.checkboxText, "Forecasts"));
 		//select Statistics
 		assertFalse(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
 	}
 	
+	@Test
+	public void achiveFilterInfographics() {
+		HomePage homePage = new HomePage();
+		ResultPage resultPage = new ResultPage();
+        // Verify Title
+		assertTrue(homePage.isAt());
+	
+		// Verify logo is displayed
+		assertTrue(homePage.logo.isDisplayed());
+		
+		// Search for Statistics
+		homePage.searchBox.sendKeys("Infographics");
+		homePage.searchBox.sendKeys(Keys.ENTER);
+	
+		
+		
+		// Verify title
+		assertTrue(resultPage.isAt());
+		//Verify checkboxes are displayed
+		assertTrue(resultPage.elementsAreDispayed(resultPage.statisticsCheckBox));
+		//verify checkboxes are selected
+		assertTrue(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox)); 
+		//verify icon is displayed
+		assertTrue(resultPage.isIconDisplayed("Infographic"));
+		//verify text next to icon and click on it
+		assertTrue(resultPage.checkBoxTextDisplayed(resultPage.checkboxText, "Infographics"));
+		//select Statistics
+		assertFalse(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
+	}
 }
