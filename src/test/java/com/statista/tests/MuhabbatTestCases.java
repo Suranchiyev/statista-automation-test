@@ -120,19 +120,24 @@ public class MuhabbatTestCases extends TestBase {
 	public void verifyConsumerFunctionality() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
-		assertTrue(homePage.isAt());
-		homePage.searchBox.sendKeys("Consumer Markets");
 		
+		assertTrue(homePage.isAt());
 		assertTrue(homePage.searchBox.isDisplayed());
+		
+		homePage.searchBox.sendKeys("Consumer Markets"+ Keys.ENTER);
+		assertTrue(resultPage.isAt());
 		assertTrue(resultPage.conMarketCheckBox.isDisplayed());
 		resultPage.conMarketCheckBox.click();
+		
 		assertFalse(resultPage.conMarketCheckBox.isSelected());
+		assertTrue(resultPage.consumerMarkets.getText().contains("Consumer Markets"));
+		assertTrue(resultPage.conMarketIcon.isDisplayed());
 		
-		
-		
-		
+		resultPage.conMarketCheckBox.click();
 		resultPage.ditgitalMarketCheckBox.click();
+		assertTrue(resultPage.conMarketCheckBox.isSelected());
 		assertFalse(resultPage.ditgitalMarketCheckBox.isSelected());
+		assertFalse(resultPage.companiesCheckbox.isSelected());
 	} 
 }
 

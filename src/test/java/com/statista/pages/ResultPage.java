@@ -124,6 +124,9 @@ public class ResultPage {
 	@FindBy(xpath="//input[@id='cmo']")
 	public WebElement conMarketCheckBox;
 	
+	@FindBy(xpath="//span[@class='search-cmo sprite vertical-middle margin-left-5']")
+	public WebElement conMarketIcon;
+	
 	@FindBy(xpath="//input[@id='dmo']")
 	public WebElement ditgitalMarketCheckBox;
 	
