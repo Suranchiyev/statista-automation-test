@@ -103,23 +103,29 @@ public class ResultPage {
 	
 	@FindBy(xpath = "//div[@data-group='statistics']//input[@type='checkbox']")
 	public List<WebElement> checkBoxes;
-
+	//label[@data-area='companies']
 	// following 4 WebElements could have been used as List, but later some of them
 	// needed to be used as single element
-	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Dossiers')]")
+	@FindBy(xpath = "//label[@data-area='dossiers']")
 	public WebElement Dossiers;
 
-	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Statista studies')]")
+	@FindBy(xpath = "//label[@data-area='groupA']")
 	public WebElement statistaStudies;
 
-	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Industry & country reports')]")
+	@FindBy(xpath = "//label[@data-area='groupB']")
 	public WebElement industryCountryReports;
 
-	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Additional studies')]")
+	@FindBy(xpath = "//label[@data-area='groupC']")
 	public WebElement additionalStudies;
 
-	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Consumer Markets')]")
+	@FindBy(xpath = "//label[@data-area='cmo']")
 	public WebElement consumerMarkets;
+	
+	@FindBy(xpath="//input[@id='cmo']")
+	public WebElement conMarketCheckBox;
+	
+	@FindBy(xpath="//input[@id='dmo']")
+	public WebElement ditgitalMarketCheckBox;
 	
 	@FindBy(xpath = "//span[@class='search-statistic sprite vertical-middle margin-left-5']")
 	public WebElement statisticsIcon;

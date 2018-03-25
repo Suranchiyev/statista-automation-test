@@ -4,6 +4,7 @@
  */
 package com.statista.tests;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.Keys;
@@ -123,7 +124,15 @@ public class MuhabbatTestCases extends TestBase {
 		homePage.searchBox.sendKeys("Consumer Markets");
 		
 		assertTrue(homePage.searchBox.isDisplayed());
+		assertTrue(resultPage.conMarketCheckBox.isDisplayed());
+		resultPage.conMarketCheckBox.click();
+		assertFalse(resultPage.conMarketCheckBox.isSelected());
 		
+		
+		
+		
+		resultPage.ditgitalMarketCheckBox.click();
+		assertFalse(resultPage.ditgitalMarketCheckBox.isSelected());
 	} 
 }
 
