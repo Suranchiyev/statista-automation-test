@@ -303,4 +303,8 @@ public class ResultPage {
 		return false;
 	}
 
+	public WebElement getCountry(String country) {
+		return driver.findElement(By.xpath("//div[@id='isocountry']//span[.='"+country+"']"));
+	}
+
 }

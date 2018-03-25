@@ -22,7 +22,7 @@ public class AbdukerimTestCases extends TestBase {
 		assertTrue(resultPage.getCountry("Afghanistan").isDisplayed());
 		// Select North America
 		Thread.sleep(2000);
-		resultPage.selectRegionByText("North America");
+		resultPage.chooseRegionByText("North America");
 	}
 
 }
