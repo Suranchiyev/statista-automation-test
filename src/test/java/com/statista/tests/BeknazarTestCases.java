@@ -1,5 +1,6 @@
 package com.statista.tests;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
@@ -136,11 +137,32 @@ public class BeknazarTestCases extends TestBase {
 	@Test
 	public void searchFilterTC05(){
 		homePage = new HomePage();
+		assertTrue(homePage.isAt());
 		homePage.searchBox.sendKeys("homelessness"+Keys.ENTER);
 		
 		resultPage = new ResultPage();
+		assertTrue(resultPage.isAt());
 		resultPage.chooseRegionByText("North America");
-		////input[@name='isocountry[]']//following-sibling::span
+		
+		// Expect to see the only “Canada”, “Mexico”, and “United States”
+		int expect = 3;
+		int actual = resultPage.allCounties.size();
+		assertTrue(expect == actual,"Number of country does not match");
+		assertEquals(resultPage.allCounties.get(0).getText(), "Canada");
+		assertEquals(resultPage.allCounties.get(1).getText(), "Mexico");
+		assertEquals(resultPage.allCounties.get(2).getText(), "United States");	
+	}
+	
+	@Test
+	public void searchAndFilterTC06() {
+		homePage = new HomePage();
+		homePage.searchBox.sendKeys("Digital Markets"+Keys.ENTER);
+		assertTrue(homePage.isAt());
+		
+		resultPage = new ResultPage();
+		assertTrue(resultPage.isAt());
+		
+		resultPage.elementsAreDispayed(resultPage.checkBoxes);
 		
 	}
 	

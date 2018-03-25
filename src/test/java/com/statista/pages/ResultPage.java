@@ -86,6 +86,9 @@ public class ResultPage {
 
 	@FindBy(xpath = "//div[@data-group='studies']//*[contains(text(), 'Pro')]")
 	public List<WebElement> studAndRepProButtons;
+	
+	@FindBy(xpath = "//div[@data-group='statistics']//input[@type='checkbox']")
+	public List<WebElement> checkBoxes;
 
 	// following 4 WebElements could have been used as List, but later some of them
 	// needed to be used as single element
@@ -106,6 +109,9 @@ public class ResultPage {
 
 	@FindBy(xpath = "//span[@class=' entitiy__label']")
 	public List<WebElement> checkboxText;
+	
+	@FindBy(xpath="//input[@name='isocountry[]']//following-sibling::span")
+	public List<WebElement> allCounties;
 
 	public WebElement statistics;
 
