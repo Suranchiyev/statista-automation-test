@@ -85,4 +85,18 @@ public class DilmuratTestCases extends TestBase {
 		resultPage.refreshBtn.click();
 		assertTrue(resultPage.checkNumberOfResult("21"));
 	}
+	@Test
+	public void verifyCompaniesfilterIsDisplayed() {
+		HomePage homePage = new HomePage();
+		ResultPage resultPage = new ResultPage();
+		// Search for "Companies"
+		homePage.searchFor("Companies");
+		// Verify title
+		assertTrue(resultPage.isAt());
+		assertTrue(resultPage.companiesCheckbox.isDisplayed());
+		assertTrue(resultPage.companiesIcon.isDisplayed());
+		assertTrue(resultPage.companiesButton.isDisplayed());
+		resultPage.companiesCheckbox.click();
+		assertTrue(resultPage.checkOnlyOneChechBoxIsSelected("companies"));
+}
 }

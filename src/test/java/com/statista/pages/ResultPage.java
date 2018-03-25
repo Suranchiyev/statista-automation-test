@@ -70,6 +70,18 @@ public class ResultPage {
 
 	@FindBy(xpath = "//h3[contains(text(),'Studies & Reports')]")
 	public WebElement studiesAndReports;
+	
+	@FindBy(xpath="//input[@id='companies']")
+    public WebElement companiesCheckbox;
+    
+    @FindBy(xpath="//label[@data-area='companies']")
+    public WebElement companiesButton;
+    
+    @FindBy(xpath="//span[@class='search-company sprite vertical-middle margin-left-5']")
+    public WebElement companiesIcon;
+    
+    @FindBy(xpath="//div[@class='padding-bottom-10']//input[@type='checkbox']")
+    public List<WebElement> allCheckBoxes;
 
 	@FindBy(xpath = "//input[@class='entitiy__checkbox']")
 	public List<WebElement> statisticsCheckBox;
@@ -317,5 +329,20 @@ public class ResultPage {
 		return icon.isDisplayed();
 		
 	}
+	public boolean checkOnlyOneChechBoxIsSelected(String idName) {
+		   boolean bb = true;
+		   for(WebElement el : allCheckBoxes) {
+			   if(el.getAttribute("id").equals(idName)) {
+				   if(el.isSelected()) {
+					   continue;
+				   }
+			   }
+			   if(el.isSelected()) {
+				   bb = false;
+			   }
+			   
+		   }
+		   return bb;
+	   }
 
 }
