@@ -332,4 +332,14 @@ public class ResultPage {
 		return bb;
 	}
 
+	public boolean countryNotDisplyed(String country) {
+		try {
+			driver.findElement(By.xpath("//div[@id='isocountry']//span[.='"+country+"']"));
+			return false;
+		}catch(Exception e) {
+			return true;
+		}
+		
+	}
+
 }

@@ -20,6 +20,7 @@ public class MuhabbatTestCases extends TestBase {
 	public String searchText = "homelessness";
 	
 	@Test
+	//To verify the searching functionality is available and testable
 	public void verifySearchFunctionality() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
@@ -34,6 +35,7 @@ public class MuhabbatTestCases extends TestBase {
 	}
 
 	@Test
+	//To verify the searching functionality "Studies and Reports" is available and testable.
 	public void verifySearchFunctionalitiesStadiesAndReports() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
@@ -59,6 +61,7 @@ public class MuhabbatTestCases extends TestBase {
 	}
 	
 	@Test
+	//To verify the searching functionality "Dossiers" is available and testable.
 	public void verifyDossiersInStadiesAndReports() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
@@ -88,6 +91,7 @@ public class MuhabbatTestCases extends TestBase {
 	}
 	
 	@Test
+	//To verify the searching functionality "Additional studies" is available and testable.
 	public void verifyAdditionalStudiesInStadiesAndReports() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
@@ -117,6 +121,7 @@ public class MuhabbatTestCases extends TestBase {
 	}
 
 	@Test
+	//Verifying functionality of Consumer Markets filter checkbox
 	public void verifyConsumerFunctionality() {
 		homePage = new HomePage();
 		resultPage = new ResultPage();
