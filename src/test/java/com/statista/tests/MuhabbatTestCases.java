@@ -115,6 +115,16 @@ public class MuhabbatTestCases extends TestBase {
 		assertTrue(resultPage.noteInformation.getText().contains("Filtered view"));
 	}
 
+	@Test
+	public void verifyConsumerFunctionality() {
+		homePage = new HomePage();
+		resultPage = new ResultPage();
+		assertTrue(homePage.isAt());
+		homePage.searchBox.sendKeys("Consumer Markets");
+		
+		assertTrue(homePage.searchBox.isDisplayed());
+		
+	} 
 }
 
 
