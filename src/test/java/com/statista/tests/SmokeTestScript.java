@@ -1,10 +1,11 @@
+/**
+ * @author 10X
+ *
+ */
 package com.statista.tests;
-
 import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
-
 import com.statista.pages.HomePage;
 import com.statista.pages.LoginPage;
 import com.statista.pages.ResultPage;

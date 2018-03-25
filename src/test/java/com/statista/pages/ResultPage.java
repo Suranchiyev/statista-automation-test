@@ -1,8 +1,10 @@
+/**
+ * @author 10X
+ *
+ */
 package com.statista.pages;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -104,6 +106,9 @@ public class ResultPage {
 	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Additional studies')]")
 	public WebElement additionalStudies;
 
+	@FindBy(xpath = "//*[@data-group='studies']//*[contains(text(), 'Consumer Markets')]")
+	public WebElement consumerMarkets;
+	
 	@FindBy(xpath = "//span[@class='search-statistic sprite vertical-middle margin-left-5']")
 	public WebElement statisticsIcon;
 

@@ -1,5 +1,8 @@
+/**
+ * @author Dilmurat
+ *
+ */
 package com.statista.tests;
-
 import static org.testng.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;

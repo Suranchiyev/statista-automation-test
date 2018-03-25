@@ -1,11 +1,11 @@
+/**
+ * @author Ian
+ *
+ */
 package com.statista.tests;
-
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
-
 import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
@@ -54,7 +54,7 @@ public class IanTestCases extends TestBase {
 		assertTrue(homePage.logo.isDisplayed());
 		
 		// Search for Statistics
-		homePage.searchBox.sendKeys("Forecast");
+		homePage.searchBox.sendKeys("Forecast & survays ");
 		homePage.searchBox.sendKeys(Keys.ENTER);
 	
 		
@@ -71,7 +71,7 @@ public class IanTestCases extends TestBase {
 		//verify text next to icon and click on it
 		assertTrue(resultPage.checkBoxTextDisplayed(resultPage.checkboxText, "Forecasts"));
 		//select Statistics
-		assertFalse(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
+		assertTrue(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
 	}
 	
 	@Test
