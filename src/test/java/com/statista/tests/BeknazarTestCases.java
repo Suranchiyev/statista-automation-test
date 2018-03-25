@@ -1,20 +1,20 @@
 package com.statista.tests;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
 public class BeknazarTestCases extends TestBase {
-	
+	HomePage homePage;
+	ResultPage resultPage;
 
 	@Test
-	public void verifySearchFunctionWithArchiveFilter() {
-		HomePage homePage = new HomePage();
-		ResultPage resultPage = new ResultPage();
+	public void verifySearchFunctionWithArchiveFilterTC01() {
+		homePage = new HomePage();
+		resultPage = new ResultPage();
 		// Verify Title
 		assertTrue(homePage.isAt());
 
@@ -49,9 +49,9 @@ public class BeknazarTestCases extends TestBase {
 	}
 
 	@Test
-	public void searchFunctionStudiesReport() {
-		HomePage homePage = new HomePage();
-		ResultPage resultPage = new ResultPage();
+	public void searchFunctionStudiesReportTC02() {
+		homePage = new HomePage();
+	    resultPage = new ResultPage();
 
 		// Verify Title
 		assertTrue(homePage.isAt());
@@ -82,4 +82,67 @@ public class BeknazarTestCases extends TestBase {
 		// Verify results match with searching value
 		assertTrue(resultPage.match(resultPage.getResults(), "Darden"));
 	}
+
+	@Test
+	public void searchAndFilterTC03(){
+		homePage = new HomePage();
+		homePage.searchBox.sendKeys("Amazon"+Keys.ENTER);
+		resultPage = new ResultPage();
+		
+		//Verify title of ResultPage
+		assertTrue(resultPage.isAt());
+		resultPage.studAndRepIIcon.click();
+		
+		
+		// Verify number of result is 93
+		assertTrue(resultPage.checkNumberOfResult("93"), "Number of results is not 93");		
+		resultPage.chooseLocationFocusByText("United States");
+
+		
+		//Verify results are relevant to search value
+		assertTrue(resultPage.match(resultPage.getResults(),"Amazon","e-commerce","outlook","healthcare",
+				"app","top","smart","digit","market","Online","Awards","Drone","analys",
+				"Software","e-readers","book","Video","u.s.","Report","electronic",
+				"Telecommunication","world","retailers","estate"));
+	}
+
+	@Test
+	public void searchAndFilterNegativeTC04() {
+		homePage = new HomePage();
+		// Verify title of HomePage
+		assertTrue(homePage.isAt());
+		homePage.searchBox.sendKeys("Cybertek"+Keys.ENTER);
+		
+		// Verify title of ResultPage
+		resultPage = new ResultPage();
+		assertTrue(resultPage.isAt());
+		resultPage.chooseLocationFocusByText("Mexico");
+		
+		// Verify Search accuracy selected "Normal" be default
+		assertTrue(resultPage.searchAccuracyNormallRadio.isSelected());
+		
+		resultPage.searchAccuracyWideRadio.click();
+		
+		//Search result should NOT gave us nothing
+		assertTrue(resultPage.isNoResults(),"System gave some result");
+	}
+	/**
+	1. Go to the Https://www.statista.com home page.
+    2. Use the main search box to search for “homelessness” and hit the enter key
+    3. Choose “North America” from the region select box
+    4. Expect to see the only “Canada”, “Mexico”, and “United States” webelements to be visible
+     from the country filter check box area.
+		**/
+	@Test
+	public void searchFilterTC05(){
+		homePage = new HomePage();
+		homePage.searchBox.sendKeys("homelessness"+Keys.ENTER);
+		
+		resultPage = new ResultPage();
+		resultPage.chooseRegionByText("North America");
+		////input[@name='isocountry[]']//following-sibling::span
+		
+	}
+	
+	
 }
