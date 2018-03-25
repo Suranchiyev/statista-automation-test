@@ -53,7 +53,7 @@ public class IanTestCases extends TestBase {
 		assertTrue(homePage.logo.isDisplayed());
 		
 		// Search for Statistics
-		homePage.searchBox.sendKeys("Forecast & survays ");
+		homePage.searchBox.sendKeys("Forecast");
 		homePage.searchBox.sendKeys(Keys.ENTER);
 	
 		
@@ -69,7 +69,7 @@ public class IanTestCases extends TestBase {
 		//verify text next to icon and click on it
 		assertTrue(resultPage.checkBoxTextDisplayed(resultPage.checkboxText, "Forecasts"));
 		//select Statistics
-		assertTrue(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
+		assertFalse(resultPage.checkBoxesSelected(resultPage.statisticsCheckBox));
 	}
 	
 }
