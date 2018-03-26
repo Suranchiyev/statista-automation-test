@@ -117,8 +117,9 @@ public class SearchFunctionalites02 extends TestBase {
 	@Test
 	public void searchAndFilterTC06() {
 		homePage = new HomePage();
-		homePage.searchBox.sendKeys("Digital Markets" + Keys.ENTER);
 		assertTrue(homePage.isAt());
+		homePage.searchBox.sendKeys("Digital Markets" + Keys.ENTER);
+		
 
 		resultPage = new ResultPage();
 		assertTrue(resultPage.isAt());

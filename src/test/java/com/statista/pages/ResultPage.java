@@ -16,9 +16,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.statista.navigation.PageBase;
 import com.statista.utilities.Driver;
+import com.statista.utilities.TestBase;
 
-public class ResultPage {
+public class ResultPage extends TestBase implements PageBase{
 
 	private WebDriver driver;
 
@@ -245,7 +247,8 @@ public class ResultPage {
 		}
 		return true;
 	}
-
+    
+	@Override 
 	public boolean isAt() {
 		if (driver.getTitle().contains(" Search | Statista")) {
 			return true;

@@ -50,8 +50,8 @@
 				<version>2.21.0</version>
 				<configuration>
 					<suiteXmlFiles>
-					<!--suiteXmlFile>${runner}</suiteXmlFile>  -->
-					<suiteXmlFile>smoke_test_runner.xml</suiteXmlFile>  
+					<!--<suiteXmlFile>${runner}</suiteXmlFile>-->
+					 <suiteXmlFile>regression_suit_test.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="statista automated regression suit" verbose="2">
+	   <test name="regression test" preserve-order="true" verbose="2">
+        <packages>
+            <package name="com.statista.tests.*"/>
+        </packages>
+    </test>
+</suite>

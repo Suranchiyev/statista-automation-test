@@ -8,10 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.statista.navigation.PageBase;
 import com.statista.utilities.Driver;
 import com.statista.utilities.TestBase;
 
-public class HomePage extends TestBase{
+public class HomePage extends TestBase implements PageBase{
     
 	private WebDriver driver;
 	
@@ -41,10 +42,13 @@ public class HomePage extends TestBase{
 		searchButton.click();
 	}
 	
+	@Override
 	public boolean isAt() {
-		if (driver.getTitle().contains("Statista - The Statistics Portal for Market Data, Market Research and Market Studies")) {
+		if (driver.getTitle().contains(" Statista - The Statistics Portal for Market Data, Market Research and Market Studies")) {
 			return true;
 		}
 		return false;
 	}
+
+	
 }

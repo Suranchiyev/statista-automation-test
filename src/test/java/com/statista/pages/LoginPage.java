@@ -8,9 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.statista.utilities.Driver;
 
-public class LoginPage {
+import com.statista.navigation.PageBase;
+import com.statista.utilities.Driver;
+import com.statista.utilities.TestBase;
+
+public class LoginPage extends TestBase implements PageBase{
     private WebDriver driver;
     public LoginPage() {
     	this.driver = Driver.getDriver();
@@ -34,6 +37,7 @@ public class LoginPage {
 	     this.password.sendKeys(password+Keys.ENTER);
 	}
 	
+	@Override
 	public boolean isAt() {
 		return driver.getTitle().contains("Login");
 	}
