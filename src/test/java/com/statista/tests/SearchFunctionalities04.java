@@ -14,7 +14,7 @@ import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
-public class MuhabbatTestCases extends TestBase {
+public class SearchFunctionalities04 extends TestBase {
 	HomePage homePage;
 	ResultPage resultPage;
 	public String searchText = "homelessness";

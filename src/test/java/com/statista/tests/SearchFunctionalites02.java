@@ -12,7 +12,7 @@ import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
-public class BeknazarTestCases extends TestBase {
+public class SearchFunctionalites02 extends TestBase {
 	HomePage homePage;
 	ResultPage resultPage;
 

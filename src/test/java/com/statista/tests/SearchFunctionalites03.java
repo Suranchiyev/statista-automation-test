@@ -11,7 +11,7 @@ import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
-public class DilmuratTestCases extends TestBase {
+public class SearchFunctionalites03 extends TestBase {
 	@Test
 	public void verifyarchiveIconIsWorking() {
 		HomePage homePage = new HomePage();

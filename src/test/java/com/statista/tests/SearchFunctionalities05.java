@@ -12,7 +12,7 @@ import com.statista.pages.HomePage;
 import com.statista.pages.ResultPage;
 import com.statista.utilities.TestBase;
 
-public class IanTestCases extends TestBase {
+public class SearchFunctionalities05 extends TestBase {
 	@Test
 	public void achiveFilter() {
 		HomePage homePage = new HomePage();
